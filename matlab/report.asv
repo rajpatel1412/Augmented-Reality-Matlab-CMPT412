@@ -1,0 +1,27 @@
+% task1
+I1 = imread("../data/cv_cover.jpg");
+I2 = imread("../data/cv_desk.png");
+[locs1, locs2] = matchPics(I1, I2);
+showMatchedFeatures(I1, I2, locs1, locs2, 'montage');
+
+%
+%% homography test 4.3, 4.4, 4.5
+
+H = computeH(locs1, locs2);
+% H = computeH_norm(x1, x2).';
+% [H,inliers] = computeH_ransac(x1, x2);
+tform = projtform2d(H);
+points = [randperm(350, 10)', randperm(450, 10)'];
+% transform = transformPointsForward(tform,inliers);
+transform = transformPointsForward(tform,points);
+figure('Name', 'computeH');
+% showMatchedFeatures(I1, I2, points, transformPointsForward(projtform2d(H), [randperm(350, 10).', randperm(450, 10).']), 'montage');
+showMatchedFeatures(I1, I2, points, transform, 'montage');
+% showMatchedFeatures(img, img2, inliers, transform, 'montage');
+
+H = computeH_norm(locs1, locs2).';
+tform = projtform2d(H)
+points = [randperm(350, 10)', randperm(450, 10)'];
+transform = transformPointsForward(tform,points);
+figure('Name', 'computeH');
+showMatchedFeatures(I1, I2, inliers, transform, 'montage');

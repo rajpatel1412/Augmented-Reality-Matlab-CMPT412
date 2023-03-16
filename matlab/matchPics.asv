@@ -1,0 +1,22 @@
+function [ locs1, locs2] = matchPics( I1, I2 )
+%MATCHPICS Extract features, obtain their descriptors, and match them!
+
+%% Convert images to grayscale, if necessary
+im1 = im2gray(I1);
+im2 = im2gray(I2);
+
+
+%% Detect features in both images
+
+
+
+%% Obtain descriptors for the computed feature locations
+
+
+
+%% Match features using the descriptors
+
+
+
+end
+
